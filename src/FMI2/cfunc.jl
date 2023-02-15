@@ -693,7 +693,7 @@ Source: FMISpec2.0.2[p.86]: 3.2.2 Evaluation of Model Equations
 
 Return the nominal values of the continuous states.
 """
-function fmi2GetNominalsOfContinuousStates!(cfunc::Ptr{Nothing}, c::fmi2Component, x_nominal::Union{AbstractArray{fmi2Real}, Ptr{fmi2Real}}, nx::Csize_t)
+function fmi2GetNominalsOfContinuousStates(cfunc::Ptr{Nothing}, c::fmi2Component, x_nominal::Union{AbstractArray{fmi2Real}, Ptr{fmi2Real}}, nx::Csize_t)
     status = ccall(cfunc,
           fmi2Status,
           (fmi2Component, Ptr{fmi2Real}, Csize_t),
@@ -701,4 +701,4 @@ function fmi2GetNominalsOfContinuousStates!(cfunc::Ptr{Nothing}, c::fmi2Componen
     @debug "fmi2GetNominalsOfContinuousStates(c: $(c), x_nominal: $(x_nominal), nx: $(nx)) → $(status)"
     return status
 end
-export fmi2GetNominalsOfContinuousStates!
+export fmi2GetNominalsOfContinuousStates
